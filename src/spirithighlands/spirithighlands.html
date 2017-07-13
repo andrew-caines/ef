@@ -1,0 +1,27 @@
+<template>
+  <require from="app.css"> </require>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5ths col-xs-12" repeat.for="level of data">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Level ${level.Level} ${level.rewardtype}</h3>
+          </div>
+          <div class="panel-body">
+            <h3 if.bind="level.rewardtype === 'Diamond' || level.rewardtype === 'Honor' ">${level.reward} x <img src.bind="level.rewardIcon" width="32px" height="32px"></h3>
+            <h3 if.bind="level.rewardtype === 'Fragment' ">${level.reward} x <img src.bind="level.rewardIcon" width="64px" height="64px" bootstrap-tooltip data-toggle="tooltip"
+                title="${level.fragmentName}">
+              <img if.bind="level.luck" src="images/Dice.png" width="32px" height="32px" bootstrap-tooltip data-toggle="tooltip" title="Luck is required to win with this combination!">
+            </h3>
+            <img repeat.for="u of level.Units" src.bind="u.icon" alt.bind="u.abbr" width="48px" height="48px" bootstrap-tooltip data-toggle="tooltip"
+              title="${u.name}" class="${u.trans ? 'trans-image':''}" />
+          </div>
+          <div class="panel-footer">
+            <h5>${level.summary}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ROW END -->
+    <!-- /.container -->
+</template>
